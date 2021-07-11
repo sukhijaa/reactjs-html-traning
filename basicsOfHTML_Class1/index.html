@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML Training</title>
+    <style>
+        body {
+            background: white;
+            font-family: Tahoma;
+        }
+        span {
+            font-family: "Courier New";
+        }
+        p {
+            margin: 0;
+            padding: 5px;
+            border: 2px solid red;
+        }
+        a {
+            color: blue;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        a:hover {
+            color: red;
+            font-size: 20px;
+            margin-left: 26px;
+            border: 2px solid red;
+        }
+        li:first-child {
+            border: 1px solid green;
+        }
+        #reality {
+            color: coral;
+            font-weight: bolder;
+        }
+        div {
+            /*background: blueviolet;*/
+            color: burlywood !important;
+            text-decoration: underline;
+            background: red !important;
+        }
+        #divId {
+            color: aquamarine;
+            font-family: "Comic Sans MS";
+            background: blue;
+        }
+        .text-blue {
+            color: blue;
+        }
+        .text-violet {
+            color: violet;
+            font-weight: bolder;
+        }
+        .no-border {
+            border: none;
+        }
+        .align-justify {
+            text-align: justify;
+        }
+        table {
+            border: 2px dashed black;
+        }
+        tr {
+            border: 1px solid red;
+        }
+        td, th {
+            border: 1px solid blue
+        }
+
+        tr:last-child:hover td:last-child:hover {
+            background: blue;
+        }
+        .tt-empId {
+            background: cyan;
+        }
+        .table2 .row2 .tt-empId {
+            font-weight: bolder;
+        }
+        .tt-empId[myName=a] {
+            background: red;
+        }
+        /*td:last-child:hover {*/
+        /*    background: red;*/
+        /*}*/
+        /*#totalDue:hover {*/
+        /*    background: violet;*/
+        /*}*/
+
+    </style>
+</head>
+<body>
+    <b><i>This is my HTML Page</i></b>
+    <h1>Best Website of all time</h1>
+    <h2>Best Website of all time</h2>
+    <h3>Best Website of all time</h3>
+    <h4>Best Website of all time</h4>
+    <h5>Best Website of all time</h5>
+    <h6>Best Website of all time</h6>
+    <span class="text-blue">I would love this website to become viral</span>
+    <span id="reality">but we all know its not possible</span>
+
+    <div class="text-blue text-violet" id="divId" style="background: violet">
+        So let's just focus on topic and not fly high
+    </div>
+    <div style="background: darkgray">
+        So let's just focus on topic and not fly high
+    </div>
+
+    <table>
+        <caption>Employee Dues</caption>
+        <thead>
+            <th>
+                Name
+            </th>
+            <th>
+                Emp ID
+            </th>
+            <th>
+                Remaining Dues
+            </th>
+        </thead>
+        <tbody>
+            <tr class="row1">
+                <td rowspan="3">
+                    Abhishek
+                </td>
+                <td class="tt-empId">
+                    123456
+                </td>
+                <td>
+                    10
+                </td>
+            </tr>
+            <tr class="row2">
+                <td class="tt-empId">
+                    123457
+                </td>
+                <td>
+                    10
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    123456
+                </td>
+                <td>
+                    20
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    Total
+                </td>
+                <td id="totalDue">
+                    40
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table2">
+        <caption>Employee Dues</caption>
+        <thead>
+        <th>
+            Name
+        </th>
+        <th>
+            Emp ID
+        </th>
+        <th>
+            Remaining Dues
+        </th>
+        </thead>
+        <tbody>
+        <tr class="row1">
+            <td rowspan="3">
+                Abhishek
+            </td>
+            <td class="tt-empId">
+                123456
+            </td>
+            <td>
+                10
+            </td>
+        </tr>
+        <tr class="row2">
+            <td class="tt-empId" myName="a">
+                123457
+            </td>
+            <td>
+                10
+            </td>
+        </tr>
+        <tr>
+            <td class="tt-empId" myName="a">
+                123456
+            </td>
+            <td>
+                20
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                Total
+            </td>
+            <td id="totalDue1">
+                40
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p>
+        <span class="text-blue">ABC</span>
+        Although its boring but we'll still have to go through it
+    </p>
+    <p class="no-border align-justify">
+        Alignment Paragraph. slkcvjbsd eslkvnsv svlkrnbvsd vdslkgvnerv elkgvnerv evlkrnvd vdlkvn vdklvbnlv erkvbervd vlkvblvkv vnrlkvbnrv lkvbnv vlkbndsvsdvsd vdslkvbdsv vlkvblv d vlkbvsd vdsflkvbsdv lvv erlvkebrvr vrelvbrv lkvbnv vdklsvsdlv nlskvbnsdlkv vdlkvndlkvvklnsdv ldskbvsdl vnvlkvnsdv slvknsdv
+        Alignment Paragraph. slkcvjbsd eslkvnsv svlkrnbvsd vdslkgvnerv elkgvnerv evlkrnvd vdlkvn vdklvbnlv erkvbervd vlkvblvkv vnrlkvbnrv lkvbnv vlkbndsvsdvsd vdslkvbdsv vlkvblv d vlkbvsd vdsflkvbsdv lvv erlvkebrvr vrelvbrv lkvbnv vdklsvsdlv nlskvbnsdlkv vdlkvndlkvvklnsdv ldskbvsdl vnvlkvnsdv slvknsdv
+        Alignment Paragraph. slkcvjbsd eslkvnsv svlkrnbvsd vdslkgvnerv elkgvnerv evlkrnvd vdlkvn vdklvbnlv erkvbervd vlkvblvkv vnrlkvbnrv lkvbnv vlkbndsvsdvsd vdslkvbdsv vlkvblv d vlkbvsd vdsflkvbsdv lvv erlvkebrvr vrelvbrv lkvbnv vdklsvsdlv nlskvbnsdlkv vdlkvndlkvvklnsdv ldskbvsdl vnvlkvnsdv slvknsdv
+        Alignment Paragraph. slkcvjbsd eslkvnsv svlkrnbvsd vdslkgvnerv elkgvnerv evlkrnvd vdlkvn vdklvbnlv erkvbervd vlkvblvkv vnrlkvbnrv lkvbnv vlkbndsvsdvsd vdslkvbdsv vlkvblv d vlkbvsd vdsflkvbsdv lvv erlvkebrvr vrelvbrv lkvbnv vdklsvsdlv nlskvbnsdlkv vdlkvndlkvvklnsdv ldskbvsdl vnvlkvnsdv slvknsdv
+        Alignment Paragraph. slkcvjbsd eslkvnsv svlkrnbvsd vdslkgvnerv elkgvnerv evlkrnvd vdlkvn vdklvbnlv erkvbervd vlkvblvkv vnrlkvbnrv lkvbnv vlkbndsvsdvsd vdslkvbdsv vlkvblv d vlkbvsd vdsflkvbsdv lvv erlvkebrvr vrelvbrv lkvbnv vdklsvsdlv nlskvbnsdlkv vdlkvndlkvvklnsdv ldskbvsdl vnvlkvnsdv slvknsdv
+        Alignment Paragraph. slkcvjbsd eslkvnsv svlkrnbvsd vdslkgvnerv elkgvnerv evlkrnvd vdlkvn vdklvbnlv erkvbervd vlkvblvkv vnrlkvbnrv lkvbnv vlkbndsvsdvsd vdslkvbdsv vlkvblv d vlkbvsd vdsflkvbsdv lvv erlvkebrvr vrelvbrv lkvbnv vdklsvsdlv nlskvbnsdlkv vdlkvndlkvvklnsdv ldskbvsdl vnvlkvnsdv slvknsdv
+        Alignment Paragraph. slkcvjbsd eslkvnsv svlkrnbvsd vdslkgvnerv elkgvnerv evlkrnvd vdlkvn vdklvbnlv erkvbervd vlkvblvkv vnrlkvbnrv lkvbnv vlkbndsvsdvsd vdslkvbdsv vlkvblv d vlkbvsd vdsflkvbsdv lvv erlvkebrvr vrelvbrv lkvbnv vdklsvsdlv nlskvbnsdlkv vdlkvndlkvvklnsdv ldskbvsdl vnvlkvnsdv slvknsdv
+        Alignment Paragraph. slkcvjbsd eslkvnsv svlkrnbvsd vdslkgvnerv elkgvnerv evlkrnvd vdlkvn vdklvbnlv erkvbervd vlkvblvkv vnrlkvbnrv lkvbnv vlkbndsvsdvsd vdslkvbdsv vlkvblv d vlkbvsd vdsflkvbsdv lvv erlvkebrvr vrelvbrv lkvbnv vdklsvsdlv nlskvbnsdlkv vdlkvndlkvvklnsdv ldskbvsdl vnvlkvnsdv slvknsdv
+
+    </p>
+    <div>
+        So let's just focus on topic and not fly high
+    </div>
+
+    <h1>
+        3 kinds of styling
+    </h1>
+    <ul class="text-violet">
+        <li class="text-blue text-violet">
+            <b>Inline</b> : When styling is mentioned as part of element description in HTML
+        </li>
+        <li>
+            <b>Internal</b> : When styling is mentioned as part of separate section ("style") section
+        </li>
+        <li class="text-blue">
+            <b>External</b>  :When styling is mentioned as part of a separate file
+        </li>
+    </ul>
+    <ol class="text-violet">
+        <li class="text-blue text-violet">
+            <ul class="text-violet">
+                <li class="text-blue text-violet">
+                    <b>Inline</b> : When styling is mentioned as part of element description in HTML
+                </li>
+                <li>
+                    <b>Internal</b> : When styling is mentioned as part of separate section ("style") section
+                </li>
+                <li class="text-blue">
+                    <b>External</b>  :When styling is mentioned as part of a separate file
+                </li>
+            </ul>
+        </li>
+        <li>
+            <b>Internal</b> : When styling is mentioned as part of separate section ("style") section
+        </li>
+        <li class="text-blue">
+            <b>External</b>  :When styling is mentioned as part of a separate file
+        </li>
+    </ol>
+    <a>Link</a>
+    <input type="number">
+</body>
+</html>

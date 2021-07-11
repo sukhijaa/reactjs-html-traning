@@ -1,0 +1,82 @@
+body {
+    background: white;
+    font-family: Tahoma;
+}
+span {
+    font-family: "Courier New";
+}
+p {
+    margin: 0;
+    padding: 5px;
+    border: 2px solid red;
+}
+a {
+    color: blue;
+    cursor: pointer;
+    text-decoration: underline;
+}
+a:hover {
+    color: red;
+    font-size: 20px;
+    margin-left: 26px;
+    border: 2px solid red;
+}
+li:first-child {
+    border: 1px solid green;
+}
+#reality {
+    color: coral;
+    font-weight: bolder;
+}
+div {
+    /*background: blueviolet;*/
+    color: burlywood !important;
+    text-decoration: underline;
+    background: red !important;
+}
+#divId {
+    color: aquamarine;
+    font-family: "Comic Sans MS";
+    background: blue;
+}
+.text-blue {
+    color: blue;
+}
+.text-violet {
+    color: violet;
+    font-weight: bolder;
+}
+.no-border {
+    border: none;
+}
+.align-justify {
+    text-align: justify;
+}
+table {
+    border: 2px dashed black;
+}
+tr {
+    border: 1px solid red;
+}
+td, th {
+    border: 1px solid blue
+}
+
+tr:last-child:hover td:last-child:hover {
+    background: blue;
+}
+.tt-empId {
+    background: cyan;
+}
+.table2 .row2 .tt-empId {
+    font-weight: bolder;
+}
+.tt-empId[myName=a] {
+    background: red;
+}
+/*td:last-child:hover {*/
+/*    background: red;*/
+/*}*/
+/*#totalDue:hover {*/
+/*    background: violet;*/
+/*}*/
