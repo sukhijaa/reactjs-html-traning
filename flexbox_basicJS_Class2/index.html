@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML Training - Flexbox</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        console.log("Hello world");
+    </script>
+</head>
+<body>
+
+<div class="flexbox-wrapper" id="wrapper">
+    <!-- Element with wrapper id is already constructed but its still not painted onto the dom since HTML Parser doesn't yet know how it will shape out to be.
+      That depends upon its children which HTML PArser has not encountered yet-->
+    <script>
+        console.log("Before A");
+        let wrapper = document.getElementById("wrapper"); // Will be found but its bounding rectangle will be empty
+        console.log(wrapper);
+        let obj = wrapper.getBoundingClientRect();
+        console.log("Shallow COpied Rect", {...obj});
+        console.log("Original Rect Obj", obj);
+        /**
+         *
+         *
+         * var element = null;
+         * if (openenignTag) {
+         *     if (parsedElement === "dev") {
+                   element = new Element();
+         *         DOM.push(div)
+         *     }
+         * }
+         *
+         * if (closingTag) {
+         *     element.fillRectangle();
+         * }
+         *
+         */
+    </script>
+<!-- Element with firstBox id not encountered yet and hecne we can't reference it using JS -->
+    <div class="display-tab" id="firstBox">
+        Big Char A
+    </div>
+    <script>
+        console.log("Before B");
+        console.log(document.getElementById("firstBox")); // Will be found
+    </script>
+    <div class="display-tab">
+        Big Char B
+    </div>
+    <div class="display-tab">
+        Big Char C
+    </div>
+    <div class="display-tab">
+        Big Char D
+    </div>
+    <div class="display-tab">
+        Big Char E
+    </div>
+    <script>
+        console.log("Before Second A");
+    </script>
+    <div class="display-tab">
+        Big Char A
+    </div>
+    <div class="display-tab">
+        Big Char B
+    </div>
+    <div class="display-tab">
+        Big Char C
+    </div>
+    <div class="display-tab">
+        Big Char D
+    </div>
+    <div class="display-tab">
+        Big Char E
+    </div>
+    <img src="react-icon.png" class="display-tab position">
+    <!-- Element with wrapper id is already constructed but its still not painted onto the dom since HTML Parser still doesn't know how if there are any more children.-->
+    <script>
+        console.log("All Done");
+        let wrapper1 = document.getElementById("wrapper");
+        let obj1 = wrapper1.getBoundingClientRect();
+        console.log("Shallow COpied Rect before end", {...obj1});
+        console.log("Original Rect Obj before end", obj1);
+    </script>
+</div>
+<!-- Now HTML Parser knows there are no more children and now it will paint it onto the dom -->
+<script>
+    let wrapper2 = document.getElementById("wrapper");
+    let obj2 = wrapper2.getBoundingClientRect();
+    console.log("Shallow COpied Rect after end", JSON.stringify(obj2));
+    console.log("Original Rect Obj after end", obj2);
+</script>
+
+</body>
+</html>

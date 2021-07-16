@@ -1,0 +1,34 @@
+body {
+    --padding: 20px;
+    --margin: 20px;
+    --border: 1px;
+    --count: 3;
+}
+
+body {
+    background: white;
+    font-family: Tahoma;
+}
+.display-tab {
+    height: 200px;
+    width: 200px;
+    /*min-width: 200px;*/
+    border: 1px solid red;
+    margin: var(--margin);
+    padding: var(--padding);
+    flex-basis: calc(33% - var(--padding) - var(--padding) - var(--margin) - var(--margin) - var(--border) - var(--border));
+    /*display: none;*/
+    /*visibility: hidden;*/
+}
+.flexbox-wrapper {
+    border: 1px solid blue;
+    display: flex;
+    flex-flow: wrap;
+    /*overflow: auto;*/
+}
+.position {
+    border: 1px solid blue;
+    position: absolute;
+    top: 133%;
+    left: 33%;
+}
