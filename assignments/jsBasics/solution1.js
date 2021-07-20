@@ -29,13 +29,13 @@ const registerInterval = (intervalNumber) => {
 };
 
 // Print numbers of the form 4n
-setTimeout(() => registerInterval(1), PRINT_GAP);
+setTimeout(() => registerInterval(1), PRINT_GAP); // 1st Second, 5th second
 
 // Print numbers of the form 4n + 1
-setTimeout(() => registerInterval(2), 2 * PRINT_GAP);
+setTimeout(() => registerInterval(2), 2 * PRINT_GAP); // 2nd second, 6th Second
 
 // Print numbers of the form 4n + 2
-setTimeout(() => registerInterval(3), 3 * PRINT_GAP);
+setTimeout(() => registerInterval(3), 3 * PRINT_GAP); // 3rd Second, 7th second
 
 // Print numbers of the form 4n + 3
-setTimeout(() => registerInterval(4), 4 * PRINT_GAP);
+setTimeout(() => registerInterval(4), 4 * PRINT_GAP);// 4th Second, 8th second

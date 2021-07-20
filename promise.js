@@ -28,7 +28,7 @@
 // new Promise((resolveCB, rejectCB) => task())
 const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
-        const response = {responseCode: 200, responseMessage : {body : [1,2,3,4]}};
+        const response = {responseCode: 400, responseMessage : {body : [1,2,3,4]}};
 
         try {
             if (response.responseCode >= 400) {
@@ -44,38 +44,27 @@ const promise = new Promise((resolve, reject) => {
     }, 3000);
 });
 
-// promise.then(response => {
-//     console.log("Awaited response", response);
-// }).catch(e => {
-//     console.log("Error after await", e);
-// });
-
-
-const handlePromiseOutput = async () => {
-    console.log("Waiting on method");
-    try {
-        const response = await promise;
-        console.log("Awaited response", response);
-    } catch (e) {
-        console.log("Error after await", e);
-    } finally {
-        console.log("Finally");
-    }
-};
-
-console.log("Execution started");
-handlePromiseOutput();
-console.log("Promise Finished");
-
-
-
-
-
-// setTimeout(() => {
-//     setTimeout(() => {
-//         console.log('inner');
-//         setTimeout(() => {
-//             console.log(3);
-//         }, 1000)
-//     }, 1000)
-// }, 1000)
+promise.then((response) => {
+    // SUccess case handling
+    console.log("timeout Complete 1", response);
+    return [1,3,4];
+}).then((response) => {
+    // SUccess case handling
+    console.log("timeout Complete 2", response);
+    throw new Error("Errored in 2");
+}).then((response) => {
+    // SUccess case handling
+    console.log("timeout Complete 3", response);
+    return [1,3,4];
+}).then((response) => {
+    // SUccess case handling
+    console.log("timeout Complete 4", response);
+}).catch(e => {
+    // Failure case handling or exception handling
+    console.log("Timeout failed", e.message);
+    throw new Error("Catch Error");
+}).catch((e) => {
+    console.log("Another Error", e.message);
+}).finally(() => {
+    console.log("Finally")
+});
