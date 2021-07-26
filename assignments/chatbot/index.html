@@ -5,9 +5,21 @@
     <title>HTML Training - JS</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body style="height: 100vh; width: 100vw">
+<body>
 <div class="page-wrapper">
+    <div class="chat-message-area-wrapper" id="chatWrapper">
 
+    </div>
+    <div class="chat-controls-wrapper">
+        <form action="#" id="person1Chat" name="person1">
+            <input type="submit" value="Person 1">
+            <input type="text" name="person1" onchange="handleTextChange(this)" placeholder="Enter your message here..">
+        </form>
+        <form action="#" id="person2Chat" name="person2">
+            <input type="text" name="person2" onchange="handleTextChange(this)" placeholder="Enter your message here..">
+            <input type="submit" value="Person 2">
+        </form>
+    </div>
 </div>
 <script src="main.js"></script>
 </body>

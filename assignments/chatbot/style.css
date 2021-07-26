@@ -1,8 +1,6 @@
 body {
-    --headerHeight: 60px;
-    --videoTileMargin: 20px;
-    --videoTilePadding: 10px;
-    --videoLengthHeight: 20px;
+    --chatControlHeight: 80px;
+    --person2Color: blue;
     padding: 0;
     margin: 0;
 }
@@ -11,99 +9,97 @@ body {
     width: 100%;
     height: 100vh;
     overflow: hidden;
-}
-
-.header-wrapper {
-    width: 100%;
-    height: var(--headerHeight);
-    background: maroon;
     display: flex;
-    align-items: flex-start;
-    padding-left: 20px;
+    flex-direction: column;
 }
 
-.header-wrapper img {
-    width: 100px;
-    height: 45px;
-}
-
-.body-wrapper {
-    display: flex;
-    height: calc(100% - var(--headerHeight));
-    min-height: calc(100% - var(--headerHeight));
-    overflow: hidden;
-}
-
-.body-wrapper .sidebar-wrapper {
-    width: 20%;
-    min-width: 150px;
-    max-width: 200px;
-    height: 100%;
-    box-shadow: 5px 0 3px gray;
-}
-
-.body-wrapper .sidebar-wrapper .sidebar-option {
-    height: 50px;
-    cursor: pointer;
-    line-height: 50px;
-    padding-left: 10px;
-}
-
-.body-wrapper .sidebar-wrapper .sidebar-option:hover {
-    background: gray;
-}
-
-.body-wrapper .sidebar-wrapper .sidebar-divider {
-    border: 1px solid black;
-}
-
-.body-wrapper .video-tile-wrapper {
+.chat-message-area-wrapper {
     flex-grow: 100;
-    height: 100%;
+    background: cornsilk;
     display: flex;
-    flex-wrap: wrap;
-    flex-flow: wrap;
-    overflow: scroll;
+    flex-direction: column;
+    overflow: auto;
+    max-height: calc(100% - var(--chatControlHeight) - 20px);
 }
 
-.body-wrapper .video-tile-wrapper .video-tile {
-    flex-basis: calc(33% - 2 * var(--videoTileMargin) - 2 * var(--videoTilePadding));
-    border: 1px solid gray;
-    box-shadow: 0 0 5px gray;
-    margin: var(--videoTileMargin);
-    padding: var(--videoTilePadding);
+.chat-message-area-wrapper .chat-box {
+    padding: 8px 10px 4px 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+    max-width: 75%;
+    margin: 10px 20px;
 }
 
-.body-wrapper .video-tile-wrapper .video-tile .tile-thumbnail img {
+.chat-message-area-wrapper .person1-chat {
+    align-self: flex-start;
+    border-bottom-left-radius: 2px;
+}
+
+.chat-message-area-wrapper .person2-chat {
+    align-self: flex-end;
+    border-bottom-right-radius: 2px;
+}
+
+.chat-message-area-wrapper .chat-box .time-arrow-wrapper {
+    display: flex;
     width: 100%;
-    height: 150px;
 }
 
-.body-wrapper .video-tile-wrapper .video-tile .tile-video-length {
+.chat-message-area-wrapper .person1-chat .time-arrow-wrapper {
+    flex-direction: row-reverse;
+}
+
+.chat-message-area-wrapper .chat-box .chat-timestamp {
+    font-size: 10px;
+    flex-grow: 100;
     text-align: right;
-    width: 100%;
-    height: 1px;
 }
 
-.body-wrapper .video-tile-wrapper .video-tile .tile-video-length span {
-    background: black;
-    color: white;
+.chat-message-area-wrapper .chat-box .chat-arrow {
+    width: 8px;
+    height: 8px;
+    border: 1px solid black;
+    transform: rotate(45deg);
     position: relative;
-    top: calc(-1 * var(--videoLengthHeight) - 3px);
-    line-height: var(--videoLengthHeight);
+    left: -25px;
+    top: 7px;
+    border-width: 0 0 1px 1px;
+    background: cornsilk;
 }
 
-.body-wrapper .video-tile-wrapper .video-tile .tile-video-title {
-    font-size: 16px;
-    font-weight: bolder;
+.chat-message-area-wrapper .person2-chat .chat-arrow {
+    left: 15px;
+    top: 3px;
+    border-width: 1px 1px 0 0;
+    align-self: flex-end;
 }
 
-.body-wrapper .video-tile-wrapper .video-tile .tile-channel-name {
-    font-size: 14px;
-    color: gray;
+.chat-controls-wrapper {
+    display: flex;
+    height: var(--chatControlHeight);
+    min-height: var(--chatControlHeight);
+    max-height: var(--chatControlHeight);
+    border-top: 1px solid black;
+    padding-top: 5px;
+    margin-top: 5px;
 }
 
-.body-wrapper .video-tile-wrapper .video-tile .title-views-time-wrapper {
-    font-size: 12px;
-    color: gray;
+.chat-controls-wrapper form {
+    flex-basis: 50%;
+    display: flex;
+}
+
+.chat-controls-wrapper form:last-child {
+    justify-content: flex-end;
+}
+
+.chat-controls-wrapper form input[type="submit"] {
+    flex-basis: 20%;
+}
+
+.chat-controls-wrapper form input[type="text"] {
+    flex-basis: 75%;
 }
