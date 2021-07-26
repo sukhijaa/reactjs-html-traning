@@ -6,7 +6,267 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body style="height: 100vh; width: 100vw">
-<!--<script src="main.js"></script>-->
-<script src="assignments/jsBasics/solution3.js"></script>
+
+
+<!-- Parts of any HTML tag
+ 1. TagName : div here
+ 2. attributes/properties : Belong to a certain tag. E.g. myName, class, onclick
+ 3. Children : Direct HTML Elements inside your element
+ 4. innerHTML : Complete content inside div
+ -->
+<div class="parentDiv divClassName" id="parentDiv"  myName="Abhishek">
+    My Name is Abhishek
+<!--  Child of div with class parentDiv  -->
+    <div class="childDiv divClassName" id="childDiv">
+<!-- Not directly related to parentDiv -->
+        <div class="grandChildDiv divClassName" id="grandChildDiv"></div>
+    </div>
+</div>
+
+<form onsubmit="handleMethodSubmit()">
+    Age <input type="number" name="ageField" onchange="onChangeHandler(this)">
+    Agev Display <input type="text" disabled name="ageFieldDisplay">
+    Name <input type="name" name="nameField" onchange="onChangeHandler(this)">
+    Password <input type="password" name="passwordField" onchange="onChangeHandler(this)">
+    Password Display <input type="text" disabled name="passwordDisplay">
+    Male <input type="checkbox" name="genderField" onchange="onChangeHandler(this)">
+    <input type="submit">
+</form>
+
+
+
+
+
+
+
+
+
+<!--<div class="page-wrapper">-->
+<!--    <div class="body-wrapper">-->
+<!--        <div class="video-tile-wrapper">-->
+<!--            <div class="video-tile">-->
+<!--                <div class="tile-thumbnail">-->
+<!--                    <img src="assignments/youtubeFlexBox/images/img1.jpg" alt="Image 1">-->
+<!--                </div>-->
+<!--                <div class="tile-video-length">-->
+<!--                    <span>9:40</span>-->
+<!--                </div>-->
+<!--                <div class="tile-video-title">-->
+<!--                    My Video Title 1-->
+<!--                </div>-->
+<!--                <div class="tile-channel-name">-->
+<!--                    My Channel-->
+<!--                </div>-->
+<!--                <div class="title-views-time-wrapper">-->
+<!--                    <span class="tile-time">-->
+<!--                        3 Months Ago-->
+<!--                    </span>-->
+<!--                    <span class="tile-views">-->
+<!--                        50k Views-->
+<!--                    </span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="video-tile">-->
+<!--                <div class="tile-thumbnail">-->
+<!--                    <img src="assignments/youtubeFlexBox/images/img2.jpg" alt="Image 2">-->
+<!--                </div>-->
+<!--                <div class="tile-video-length">-->
+<!--                    <span>6:30</span>-->
+<!--                </div>-->
+<!--                <div class="tile-video-title">-->
+<!--                    My Video Title 2-->
+<!--                </div>-->
+<!--                <div class="tile-channel-name">-->
+<!--                    My Channel 2-->
+<!--                </div>-->
+<!--                <div class="title-views-time-wrapper">-->
+<!--                    <span class="tile-time">-->
+<!--                        6 Months Ago-->
+<!--                    </span>-->
+<!--                    <span class="tile-views">-->
+<!--                        150k Views-->
+<!--                    </span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="video-tile">-->
+<!--                <div class="tile-thumbnail">-->
+<!--                    <img src="assignments/youtubeFlexBox/images/img3.jpg" alt="Image 3">-->
+<!--                </div>-->
+<!--                <div class="tile-video-length">-->
+<!--                    <span>5:30</span>-->
+<!--                </div>-->
+<!--                <div class="tile-video-title">-->
+<!--                    My Video Title 3-->
+<!--                </div>-->
+<!--                <div class="tile-channel-name">-->
+<!--                    My Channel 3-->
+<!--                </div>-->
+<!--                <div class="title-views-time-wrapper">-->
+<!--                    <span class="tile-time">-->
+<!--                        9 Months Ago-->
+<!--                    </span>-->
+<!--                    <span class="tile-views">-->
+<!--                        20k Views-->
+<!--                    </span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="video-tile">-->
+<!--                <div class="tile-thumbnail">-->
+<!--                    <img src="assignments/youtubeFlexBox/images/img4.jpg" alt="Image 4">-->
+<!--                </div>-->
+<!--                <div class="tile-video-length">-->
+<!--                    <span>4:30</span>-->
+<!--                </div>-->
+<!--                <div class="tile-video-title">-->
+<!--                    My Video Title 4-->
+<!--                </div>-->
+<!--                <div class="tile-channel-name">-->
+<!--                    My Channel 4-->
+<!--                </div>-->
+<!--                <div class="title-views-time-wrapper">-->
+<!--                    <span class="tile-time">-->
+<!--                        5 Months Ago-->
+<!--                    </span>-->
+<!--                    <span class="tile-views">-->
+<!--                        40M Views-->
+<!--                    </span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="video-tile">-->
+<!--                <div class="tile-thumbnail">-->
+<!--                    <img src="assignments/youtubeFlexBox/images/img5.jpg" alt="Image 5">-->
+<!--                </div>-->
+<!--                <div class="tile-video-length">-->
+<!--                    <span>8:30</span>-->
+<!--                </div>-->
+<!--                <div class="tile-video-title">-->
+<!--                    My Video Title 5-->
+<!--                </div>-->
+<!--                <div class="tile-channel-name">-->
+<!--                    My Channel 5-->
+<!--                </div>-->
+<!--                <div class="title-views-time-wrapper">-->
+<!--                    <span class="tile-time">-->
+<!--                        5 Months Ago-->
+<!--                    </span>-->
+<!--                    <span class="tile-views">-->
+<!--                        10K Views-->
+<!--                    </span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="video-tile">-->
+<!--                <div class="tile-thumbnail">-->
+<!--                    <img src="assignments/youtubeFlexBox/images/img6.jpg" alt="Image 6">-->
+<!--                </div>-->
+<!--                <div class="tile-video-length">-->
+<!--                    <span>3:30</span>-->
+<!--                </div>-->
+<!--                <div class="tile-video-title">-->
+<!--                    My Video Title 6-->
+<!--                </div>-->
+<!--                <div class="tile-channel-name">-->
+<!--                    My Channel 6-->
+<!--                </div>-->
+<!--                <div class="title-views-time-wrapper">-->
+<!--                    <span class="tile-time">-->
+<!--                        1 Year Ago-->
+<!--                    </span>-->
+<!--                    <span class="tile-views">-->
+<!--                        20k Views-->
+<!--                    </span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="video-tile">-->
+<!--                <div class="tile-thumbnail">-->
+<!--                    <img src="assignments/youtubeFlexBox/images/img1.jpg" alt="Image 1">-->
+<!--                </div>-->
+<!--                <div class="tile-video-length">-->
+<!--                    <span>9:40</span>-->
+<!--                </div>-->
+<!--                <div class="tile-video-title">-->
+<!--                    My Video Title 1-->
+<!--                </div>-->
+<!--                <div class="tile-channel-name">-->
+<!--                    My Channel-->
+<!--                </div>-->
+<!--                <div class="title-views-time-wrapper">-->
+<!--                    <span class="tile-time">-->
+<!--                        3 Months Ago-->
+<!--                    </span>-->
+<!--                    <span class="tile-views">-->
+<!--                        50k Views-->
+<!--                    </span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="video-tile">-->
+<!--                <div class="tile-thumbnail">-->
+<!--                    <img src="assignments/youtubeFlexBox/images/img2.jpg" alt="Image 2">-->
+<!--                </div>-->
+<!--                <div class="tile-video-length">-->
+<!--                    <span>6:30</span>-->
+<!--                </div>-->
+<!--                <div class="tile-video-title">-->
+<!--                    My Video Title 2-->
+<!--                </div>-->
+<!--                <div class="tile-channel-name">-->
+<!--                    My Channel 2-->
+<!--                </div>-->
+<!--                <div class="title-views-time-wrapper">-->
+<!--                    <span class="tile-time">-->
+<!--                        6 Months Ago-->
+<!--                    </span>-->
+<!--                    <span class="tile-views">-->
+<!--                        150k Views-->
+<!--                    </span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="video-tile">-->
+<!--                <div class="tile-thumbnail">-->
+<!--                    <img src="assignments/youtubeFlexBox/images/img3.jpg" alt="Image 3">-->
+<!--                </div>-->
+<!--                <div class="tile-video-length">-->
+<!--                    <span>5:30</span>-->
+<!--                </div>-->
+<!--                <div class="tile-video-title">-->
+<!--                    My Video Title 3-->
+<!--                </div>-->
+<!--                <div class="tile-channel-name">-->
+<!--                    My Channel 3-->
+<!--                </div>-->
+<!--                <div class="title-views-time-wrapper">-->
+<!--                    <span class="tile-time">-->
+<!--                        9 Months Ago-->
+<!--                    </span>-->
+<!--                    <span class="tile-views">-->
+<!--                        20k Views-->
+<!--                    </span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="video-tile">-->
+<!--                <div class="tile-thumbnail">-->
+<!--                    <img src="assignments/youtubeFlexBox/images/img3.jpg" alt="Image 3">-->
+<!--                </div>-->
+<!--                <div class="tile-video-length">-->
+<!--                    <span>5:30</span>-->
+<!--                </div>-->
+<!--                <div class="tile-video-title">-->
+<!--                    My Video Title 3-->
+<!--                </div>-->
+<!--                <div class="tile-channel-name">-->
+<!--                    My Channel 3-->
+<!--                </div>-->
+<!--                <div class="title-views-time-wrapper">-->
+<!--                    <span class="tile-time">-->
+<!--                        9 Months Ago-->
+<!--                    </span>-->
+<!--                    <span class="tile-views">-->
+<!--                        20k Views-->
+<!--                    </span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<script src="main.js"></script>
 </body>
 </html>

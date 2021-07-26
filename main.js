@@ -1,81 +1,95 @@
-// const callback4 = () => {
-//     console.log(4);
-// };
-//
-// const callback3 = (cb4) => {
-//     console.log(3);
-//     setTimeout(cb4, 1000);
-// };
-//
-// const callback2 = (cb3, cb4) => {
-//     console.log('inner');
-//     setTimeout(() => cb3(cb4), 1000)
-// };
-//
-// const callback1 = (cb2, cb3, cb4) => {
-//     setTimeout(() => cb2(cb3, cb4), 1000)
-// };
-//
-// setTimeout( () => callback1(callback2, callback3, callback4), 1000);
+// there are 3 kinds of selectors for HTML elements - ID Selector, Class Selector, Tag Name Selector
 
-// Promise - JS promises us a fulfilled task
-// State 1 : Pending
-// state 2 : Resolved State or Fulfilled State
-// State 3 : Error State or unfulfilled state
+// Returns a single element from the document
+console.log(document.getElementById("parentDiv"));
 
+// Returns a list of elements from the document in order of their appearance in document
+console.log(document.getElementsByClassName("divClassName"));
 
-// new Promise((successCB, failureCB) => task())
-// new Promise((resolveCB, rejectCB) => task())
-const promise = new Promise((resolve, reject) => {
-    setTimeout(() => {
-        const response = {responseCode: 200, responseMessage : {body : [1,2,3,4]}};
+// Returns a list of elements from the document in order of their appearance in document
+console.log(document.getElementsByTagName("div"));
 
-        try {
-            if (response.responseCode >= 400) {
-                reject(response.responseMessage.body);
-            } else {
-                // throw new Error("123456");
-                resolve(response.responseMessage.body);
+const parentDivElement = document.getElementById("parentDiv");
+// Used to either add a new attribute, or modify existing attribute
+parentDivElement.setAttribute("myNewName", "HTMLReact");
+parentDivElement.setAttribute("myNewName", "Abhishek");
+// Used to remove the attribute
+parentDivElement.removeAttribute("myName");
 
-            }
-        } catch (e) {
-            reject(e.message);
-        }
-    }, 3000);
-});
+let clickCount = 0;
+let hoverCount = 0;
 
-// promise.then(response => {
-//     console.log("Awaited response", response);
-// }).catch(e => {
-//     console.log("Error after await", e);
-// });
-
-
-const handlePromiseOutput = async () => {
-    console.log("Waiting on method");
-    try {
-        const response = await promise;
-        console.log("Awaited response", response);
-    } catch (e) {
-        console.log("Error after await", e);
-    } finally {
-        console.log("Finally");
-    }
+function hoverEvent(e) {
+    console.log(this);
+    // console.log("Child Hovered", e);
+    const targetElement = e.target;
+    // console.log(targetElement);
+    targetElement.innerText += " Click Hover " + hoverCount++;
 };
 
-console.log("Execution started");
-handlePromiseOutput();
-console.log("Promise Finished");
+// Event Listeners must always implement a normal function and not a arrow function
+function childClickHandler(e) {
+    console.log("Child CLicked", e);
+    const targetElement = e.target;
+    console.log(targetElement);
+    // targetElement.onmouseenter = hoverEvent;
 
+    if (clickCount === 2) {
+        targetElement.addEventListener("mouseenter", hoverEvent);
+    } else if (clickCount === 10) {
+        // Make sure to pass the same method reference here which was used for addEventListener
+        targetElement.removeEventListener("mouseenter", hoverEvent);
+    }
+    targetElement.innerText += " Click Counter " + clickCount++;
+};
 
+// Create element of specified tagName
+const newChildForParent = document.createElement("div");
+newChildForParent.setAttribute("id", "newChildDiv");
+newChildForParent.setAttribute("class", "divClassName");
+newChildForParent.onclick = childClickHandler;
 
+// Add text to the HTML Element
+newChildForParent.innerText = "My name is Child";
 
+// Completely ovverrides the content of the HTML Element. Use it very cautiously
+newChildForParent.innerHTML = "<div class='grandChildDiv divClassName' id='grandChildDiv2'>I am the grandchild</div>"
 
-// setTimeout(() => {
-//     setTimeout(() => {
-//         console.log('inner');
-//         setTimeout(() => {
-//             console.log(3);
-//         }, 1000)
-//     }, 1000)
-// }, 1000)
+// Add a child to the bottom of parentDivElement
+parentDivElement.appendChild(newChildForParent);
+
+// window.addEventListener("onre")
+
+const formData = {};
+
+function onChangeHandler(target) {
+    // const target = e.target;
+    let newValue = target.value;
+    if (target.type === "checkbox") {
+        newValue = target.checked;
+    }
+    const name = target.getAttribute("name");
+    console.log(newValue, name);
+    formData[name] = newValue;
+
+    document.getElementsByName("ageFieldDisplay")[0].value = `${formData["ageField"]} Years`;
+    if (formData.passwordField) {
+        document.getElementsByName("passwordDisplay")[0].style.visibility = "visible";
+        document.getElementsByName("passwordDisplay")[0].value = formData.passwordField;
+    }
+}
+
+function handleMethodSubmit(e) {
+    debugger;
+    console.log(e);
+}
+
+document.getElementsByName("passwordDisplay")[0].style = {};
+document.getElementsByName("passwordDisplay")[0].style.visibility = "hidden";
+
+// Query Selector - If you want to use selectors similar to CSS Format
+const myParentDivQuerySelected = document.querySelector("#parentDiv");
+// For multiple matches, it always returns the first match
+const myParentDivClassSelected = document.querySelector(".divClassName.parentDiv");
+// For all matches,
+const allDivClassNames = document.querySelectorAll(".divClassName");
