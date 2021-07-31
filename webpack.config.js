@@ -3,8 +3,7 @@ const HtmlPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
-        main: path.resolve(__dirname, 'file1.js'),
-        file4: path.resolve(__dirname, 'file4.js')
+        main: path.resolve(__dirname, 'src/App.js'),
     },
     output: {
         filename: "[name].bundle.js",
@@ -12,7 +11,8 @@ module.exports = {
     },
     plugins: [
         new HtmlPlugin({
-            title: "My Webpack Files"
+            title: "ReactJS Tutorial",
+            template: path.resolve(__dirname, "src/index.html")
         })
     ],
     devServer: {
@@ -27,7 +27,7 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-env']
+                        presets: ['@babel/preset-env', '@babel/preset-react']
                     }
                 }
             },
