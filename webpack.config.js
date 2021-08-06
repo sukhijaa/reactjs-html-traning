@@ -7,12 +7,14 @@ module.exports = {
     // Define the entry point from where webpack should start scanning all the modules. If there are multiple entry points in your applications, you can mention them here and
     // webpack will create separate file for them
     entry: {
-        main: path.resolve(__dirname, 'src/App.js'),
+        main: path.resolve(__dirname, 'src/index.js'),
     },
-    // Define the output file location and filename pattern.
+    // Define the output file location and filename pattern
+    // publicPath: servers all public files i.e. js, css, media etc from this path
     output: {
         filename: "[name].bundle.js",
-        path: path.resolve(__dirname, 'out')
+        path: path.resolve(__dirname, 'out'),
+        publicPath: "/"
     },
     // Which plugins you want to run on generated bundle files
     plugins: [
@@ -24,7 +26,8 @@ module.exports = {
     // Dev server configuration. This helps in flawless development process wherein webpack itself builds and refreshes the browser
     devServer: {
         open: true,
-        contentBase: './out'
+        contentBase: './out',
+        historyApiFallback: true
     },
     // Defines how each kind of module should be processed
     module: {

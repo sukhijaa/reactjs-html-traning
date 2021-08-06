@@ -101,6 +101,9 @@ class WrapperComponent extends React.Component {
             this.firstchildProps.name += "Re-Renderedredered";
             this.secondChildProps = {...this.secondChildProps};
             this.setState({});
+            // To forcefully re-render the whole component
+            // Ignores the value returned from shouldComponentUpdate and hence doesn't call shouldComponentUpdate
+            // this.forceUpdate();
         }, 2000);
     }
 
