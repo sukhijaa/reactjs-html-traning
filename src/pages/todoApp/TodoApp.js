@@ -1,40 +1,16 @@
 import React, {Component} from "react";
 import TodoTile from "./TodoTile";
 import "./TodoApp.css";
+import {TODO_APP_DATA} from "../../utils";
 
 export default class TodoApp extends Component {
 
     state = {
-        todoItems: [
-            {
-                initials: "G",
-                description: "Groceries",
-                id: 0
-            },
-            {
-                initials: "BP",
-                description: "Bill Payments",
-                id: 1
-            },
-            {
-                initials: "E",
-                description: "Exercises",
-                id: 2
-            }
-        ]
+        todoItems: TODO_APP_DATA
     };
-
-    todoItems = [
-        <TodoTile initials={"G"} description={"Groceries"} id={0}/>,
-        <TodoTile initials={"BP"} description={"Bill Payments"} id={1}/>,
-        <TodoTile initials={"E"} description={"Exercise"} id={2}/>
-    ];
 
     constructor(props) {
         super(props);
-
-        // Work around for normal function
-        this.createTodo = this.createTodoHandlerNormal.bind(this);
     }
 
     createTodoHandler = () => {
@@ -60,32 +36,67 @@ export default class TodoApp extends Component {
             id: largestId + 1
         };
         currentTodoElements.push(newElement);
+        // setTimeout(() => {
+        //     this.setState({todoItems: currentTodoElements});
+        // }, 5000);
         this.setState({todoItems: currentTodoElements});
-    };
 
-    createTodoHandlerNormal = function() {
-        console.log("Creating a ToDo", this);
-    };
+        // Original
+        // this.setState({todoItems: currentTodoElements});
 
-    // Long hand of map function
-    getTilesArray = () => {
-        const newArray = [];
-        for (let i = 0; i< this.state.todoItems.length; i++) {
-            const todoitemObj = this.state.todoItems[i];
-            // newArray.push(<TodoTile key={todoitemObj.id} initials={todoitemObj.initials} description={todoitemObj.description} onDelete={() => this.handleTileDelete(i)}/>);
-            newArray.push(<TodoTile key={todoitemObj.id} id={todoitemObj.id} initials={todoitemObj.initials} description={todoitemObj.description} onDelete={this.handleTileDelete}/>);
-        }
-        return newArray;
+        // SetState Async example
+        // this.setState({todoItems: currentTodoElements}, () => {
+        //     console.log("Set state completed in create handler. ", this.state.todoItems);
+        // });
+        // console.log('Stateful todoItems at end of tileClickHandler', this.state.todoItems);
+        // console.log('New to-be-state todoItems at tileClickHandler', currentTodoElements);
     };
 
     handleTileDelete = (id) => {
         const currentTodoElements = [...this.state.todoItems];
         const index = currentTodoElements.findIndex(todoObj => todoObj.id === id);
-        if (index === -1)  {
+        if (index === -1) {
             return;
         }
         currentTodoElements.splice(index, 1);
+        // setTimeout(() => {
+        //     this.setState({todoItems: currentTodoElements});
+        // }, 5000);
+
+        // Original
         this.setState({todoItems: currentTodoElements});
+
+        // Set State async demonstrator
+        // this.setState({todoItems: currentTodoElements});
+        // console.log('Stateful todoItems', this.state.todoItems);
+        // console.log('New to-be-state todoItems', currentTodoElements);
+    };
+
+    handleTileClick = (id) => {
+        // if (id < 1) {
+        //     this.props.history.push("/todo/details");
+        // } else {
+        //     // setTimeout(() => {
+        //     //     this.createTodoHandler();
+        //     // }, 5000);
+        //     this.createTodoHandler();
+        // }
+
+        // For simple navigation without passing any data
+        // this.props.history.push("/todo/details");
+
+        // To pass some data
+        const clickedTile = this.state.todoItems.find(todoItem => todoItem.id === id);
+
+        if (clickedTile) {
+            this.props.history.push({
+                pathname: "/todo/details",
+                state: id,
+                // Not recommended to pass data in anything other than state - Because only state is persisted during refresh
+                myRandomVariable: {details: "I am from random var. My Id - " + id},
+            })
+        }
+
     };
 
     render() {
@@ -95,27 +106,19 @@ export default class TodoApp extends Component {
                     <h1>Welcome to ToDo App</h1>
                     <h3>Manage all your deliverable easily</h3>
                 </div>
-                <div className={"create-todo"} onClick={this.createTodoHandlerNormal}>Create New</div>
                 <div className={"todo-tiles-wrapper"}>
-                    {/*{this.todoItems[0]}*/}
-                    {/*{this.todoItems[1]}*/}
-                    {/*{this.todoItems[2]}*/}
-                    {/*{this.todoItems}*/}
                     {
-                        this.getTilesArray()
+                        this.state.todoItems.map(todoitemObj => {
+                            return <TodoTile key={todoitemObj.id}
+                                             id={todoitemObj.id}
+                                             initials={todoitemObj.initials}
+                                             description={todoitemObj.description}
+                                             onTileClick={this.handleTileClick}
+                                             onDelete={this.handleTileDelete}/>;
+                        })
                     }
-                    {/*{*/}
-                    {/*    this.state.todoItems.map(todoItem => {*/}
-                    {/*        return <TodoTile initials={todoItem.initials} description={todoItem.description}/>;*/}
-                    {/*    })*/}
-                    {/*}*/}
-                    {/*<TodoTile initials={"G"} description={"Groceries"}/>*/}
-                    {/*<TodoTile initials={"BP"} description={"Bill Payments"}/>*/}
-                    {/*<TodoTile initials={"E"} description={"Exercise"}/>*/}
-                    {/*<TodoTile initials={"NTD"} description={"New ToDo"}/>*/}
-                    {/*<TodoTile initials={"NTD"} description={"New ToDo"}/>*/}
-                    <TodoTile initials={"+"} description={"Add New ToDo"} type={'New'} onClick={this.createTodo} id={-1}/>
-                    <TodoTile initials={"+"} description={"Add New ToDo"} type={'New'} onClick={this.createTodoHandler} id={-2}/>
+                    <TodoTile initials={"+"} description={"Add New ToDo"} type={'New'} onCreateButtonClick={this.createTodoHandler}
+                              id={-2}/>
                 </div>
             </div>
         );

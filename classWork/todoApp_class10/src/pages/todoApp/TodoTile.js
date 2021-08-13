@@ -5,7 +5,7 @@ class TodoTile extends React.Component {
 
     handleTileClick = () => {
       if (this.props.type === 'New') {
-          this.props.onClick();
+          this.props.onCreateButtonClick();
       }
     };
 
@@ -45,7 +45,7 @@ TodoTile.propTypes = {
     initials: PropTypes.string,
     description: PropTypes.string,
     type: PropTypes.oneOf(['New', 'Existing']),
-    onClick: PropTypes.func,
+    onCreateButtonClick: PropTypes.func,
     onDelete: PropTypes.func,
     id: PropTypes.number.isRequired,
 };
@@ -53,7 +53,7 @@ TodoTile.propTypes = {
 TodoTile.defaultProps = {
     description: "Dummy Description 5",
     type: 'Existing',
-    onClick: () => null,
+    onCreateButtonClick: () => null,
     onDelete: () => null
 };
 

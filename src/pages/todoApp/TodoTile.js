@@ -3,20 +3,22 @@ import PropTypes from 'prop-types';
 
 class TodoTile extends React.Component {
 
-    handleTileClick = () => {
+    handleTileClick = (event) => {
+        console.log("Tile Clicked here");
       if (this.props.type === 'New') {
-          this.props.onClick();
+          this.props.onCreateButtonClick();
+      } else {
+          this.props.onTileClick(this.props.id);
       }
     };
 
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        if (nextProps.onClick !== this.props.onClick) {
-            console.log("onClick has changed");
-        }
-        return true;
-    }
+    handleDelete = (event) => {
+        // Prevent event bubbling - Not recommended
+        event.stopPropagation();
+        // Prevent the complete default behavior. Event propagation is just a part of it - Recommended
+        event.preventDefault();
 
-    handleDelete = () => {
+        console.log("Delete clicked");
         this.props.onDelete(this.props.id);
     };
 
@@ -33,9 +35,6 @@ class TodoTile extends React.Component {
                 {
                     type !== "New" ? <div className={"todo-tile-delete-button"} onClick={this.handleDelete}>Delete</div> : null
                 }
-                {/*{*/}
-                {/*    type !== "New" && <div className={"todo-tile-delete-button"} onClick={this.handleDelete}>Delete</div>*/}
-                {/*}*/}
             </div>
         );
     }
@@ -45,16 +44,18 @@ TodoTile.propTypes = {
     initials: PropTypes.string,
     description: PropTypes.string,
     type: PropTypes.oneOf(['New', 'Existing']),
-    onClick: PropTypes.func,
+    onCreateButtonClick: PropTypes.func,
     onDelete: PropTypes.func,
+    onTileClick: PropTypes.func,
     id: PropTypes.number.isRequired,
 };
 
 TodoTile.defaultProps = {
     description: "Dummy Description 5",
     type: 'Existing',
-    onClick: () => null,
-    onDelete: () => null
+    onCreateButtonClick: () => null,
+    onDelete: () => null,
+    onTileClick: () => null,
 };
 
 export default TodoTile;
