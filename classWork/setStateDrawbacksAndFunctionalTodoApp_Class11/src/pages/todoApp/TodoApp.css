@@ -1,0 +1,61 @@
+.todo-app-wrapper {
+    background: antiquewhite;
+    /*padding: top right bottom left;*/ /* Syntax of mentioning padding at different sections */
+    padding: 20px 10px 20px 10px;
+    /*padding: topBottomPair leftRightPair;*/ /* Syntax of mentioning padding at different sections */
+    padding: 20px 10px;
+    /*padding: top leftRightPair bottom;*/ /* Syntax of mentioning padding at different sections */
+    padding: 20px 10px 18px;
+}
+
+.todo-header {
+    text-align: center;
+}
+
+.create-todo {
+
+}
+.todo-tiles-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.todo-tile.new-tile {
+    color: gray;
+    background: wheat;
+}
+
+.todo-tile {
+    --marginRight: 40px;
+    --padding: 5px;
+    padding: var(--padding);
+    box-shadow: 0 5px 12px gray;
+    margin-right: var(--marginRight);
+    height: 200px;
+    flex-basis: calc(33% - 2 * var(--padding) - var(--marginRight) );
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.todo-tile-logo {
+    font-size: 50px;
+    font-weight: bolder;
+    flex-grow: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.todo-tile-description {
+    font-size: 16px;
+    text-align: center;
+}
+
+.todo-tile-delete-button {
+    text-align: center;
+    text-decoration: underline;
+    cursor: pointer;
+}
