@@ -1,6 +1,17 @@
 import React from 'react';
-import {TODO_APP_DATA} from "../../utils";
+import "./TodoDetails.css";
+import NavButton from "./NavButton";
+import {connect} from "react-redux";
+import {updateTodoIdAction} from "../../store/todoDetails";
 
+const doNothing = () => null;
+
+@connect((store) => {
+    return {
+        todoItems: store.todoData,
+        activeTodoItem: (store.todoData || []).find(todoItem => todoItem.id === store.todoDetails.activeId)
+    };
+})
 class TodoDetails extends React.Component {
 
     // Lifecycle methods
@@ -29,89 +40,115 @@ class TodoDetails extends React.Component {
 
         this.state = {
             tileId,
-            todoTileDetails: null
+            todoTileDetails: null,
+            freezeButton: false,
+            formData: "No Data Yet"
         };
-
-        console.log("I am in constructor");
     }
 
     componentDidMount() {
-        const tileDetails = TODO_APP_DATA.find(todoItem => todoItem.id === this.state.tileId);
+        const {location} = this.props;
+        const {state: tileId} = location;
+
+        const tileDetails = this.props.todoItems.find(todoItem => todoItem.id === this.state.tileId);
+
+        this.props.dispatch(updateTodoIdAction(tileId));
 
         if (!tileDetails) {
             this.props.history.push("/todo");
         } else {
-            this.setState({todoTileDetails: tileDetails});
+            this.setState({todoTileDetails: tileDetails, formData: tileDetails.description});
         }
-        console.log("I am in componentDidMount");
     }
 
     static getDerivedStateFromProps () {
-        console.log("I am in getDerivedStateFromProps");
         return {};
     }
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {
-        console.log("inside shouldComponentUpdate");
         return true;
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.state.tileId !== prevState.tileId) {
-            const tileDetails = TODO_APP_DATA.find(todoItem => todoItem.id === this.state.tileId);
+            const tileDetails = this.props.todoItems.find(todoItem => todoItem.id === this.state.tileId);
             if (!tileDetails) {
                 this.props.history.push("/todo");
             } else {
-                this.setState({todoTileDetails: tileDetails});
+                this.setState({todoTileDetails: tileDetails, formData: tileDetails.description});
             }
         }
-
-        console.log("inside componentDidUpdate");
     }
 
     componentWillUnmount() {
-        console.log("Inside componentWillUnmount");
     }
 
-    handleReRenderClick = () => {
-        this.setState({
-            tileId: this.state.tileId + 1
-        });
+    handleNext = () => {
+        this.setState({freezeButton: true});
+        setTimeout(() => {
+            this.setState({
+                tileId: this.state.tileId + 1,
+                freezeButton: false
+            });
+        }, 1000);
+    };
+
+    handlePrevious = () => {
+        this.setState({freezeButton: true});
+        setTimeout(() => {
+            this.setState({
+                tileId: this.state.tileId - 1,
+                freezeButton: false
+            });
+        }, 1000);
+    };
+
+    handleTitleChange = (e) => {
+        const newTitle = e.target.value;
+        console.log("New Title", newTitle);
+        const currentTodoTileDetails = {...this.state.todoTileDetails};
+        currentTodoTileDetails.description = newTitle;
+        this.setState({todoTileDetails: currentTodoTileDetails});
+
+        // Need to update TODO_APP_DATA so that TodoApp.js knows about updates
+        const tileInMasterData = this.props.todoItems.findIndex(tile => tile.id === currentTodoTileDetails.id);
+        this.props.todoItems[tileInMasterData] = currentTodoTileDetails;
+    };
+
+    handleInputChange = (e) => {
+        const newValue = e.target.value;
+        this.setState({formData: newValue});
     };
 
     render() {
-        console.log("Inside Render");
-        // While structuring object - Left of colon becomes name of the variable and right becomes its value
-        // const a = {
-        //    "stateDetails": "details"
-        // };
-
-        if (!this.state.todoTileDetails) {
-            // this.props.history.push("/");
+        if (!this.props.activeTodoItem) {
             return <h1 onClick={this.handleReRenderClick}>Click Me To ReRender</h1>;
         }
 
-        // Destructuring the object - Left of the colon becomes value and right becomes variable name
-        const {details: stateDetails, description, id} = this.state.todoTileDetails;
-        // Not using myRandomVariable because during refresh, only loction.state is persisted by the browser
-        // const {details: randomDetails} = myRandomVariable;
-        //
-        // console.log(this.props.location.state);
-        // console.log(this.props.location.myRandomVariable);
+        const isLastEntry = this.props.todoItems.findIndex(todoItem => todoItem.id === this.state.tileId) === (this.props.todoItems.length - 1);
+        const isFirstEntry = this.props.todoItems.findIndex(todoItem => todoItem.id === this.state.tileId) === 0;
+
+
+        const {details: stateDetails, description, id} = this.props.activeTodoItem;
         return (
-            <div>
-                <h1 onClick={this.handleReRenderClick}>Click Me To ReRender</h1>
-                <h1>
-                    {description}
+            <div className={"todo-details-wrapper"}>
+                <div className={"todo-details-navigators"}>
+                    <NavButton onClickHandler={this.handlePrevious} disabled={isFirstEntry || this.state.freezeButton} loading={this.state.freezeButton}>
+                        <h3>Previous</h3>
+                    </NavButton>
+                    &nbsp;
+                    <NavButton onClickHandler={this.handleNext} disabled={isLastEntry || this.state.freezeButton}>
+                        <h3>Next</h3>
+                    </NavButton>
+                </div>
+                <h1 className={"todo-tile-description"}>
+                    <input value={this.state.formData} onChange={this.handleInputChange} onBlur={this.handleTitleChange}/>
                 </h1>
                 <ul>
                     {
                         stateDetails.map((detailStr, index) => <li key={index}>{detailStr}</li>)
                     }
                 </ul>
-                {/*<h2>*/}
-                {/*    {randomDetails}*/}
-                {/*</h2>*/}
             </div>
         );
     }

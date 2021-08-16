@@ -20,6 +20,7 @@
   "homepage": "https://github.com/sukhijaa/reactjs-html-traning#readme",
   "devDependencies": {
     "@babel/core": "^7.14.8",
+    "@babel/plugin-proposal-decorators": "^7.14.5",
     "@babel/preset-env": "^7.14.8",
     "@babel/preset-react": "^7.14.5",
     "babel-loader": "^8.2.2",
@@ -32,10 +33,13 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.6.1",
     "circular-dependency-plugin": "^5.2.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-redux": "^7.2.4",
     "react-router": "^5.2.0",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.1.1"
   }
 }

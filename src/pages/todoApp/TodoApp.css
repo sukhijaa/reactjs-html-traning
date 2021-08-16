@@ -49,7 +49,7 @@
     justify-content: center;
 }
 
-.todo-tile-description {
+.todo-app-wrapper .todo-tile-description {
     font-size: 16px;
     text-align: center;
 }
