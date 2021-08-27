@@ -1,7 +1,7 @@
 import React from 'react';
 import {Router, Link, BrowserRouter} from 'react-router-dom';
 import {Route, Switch} from 'react-router';
-import {TestPage, TodoApp, HomePage, TodoDetails} from "./pages";
+import {TestPage, TodoApp, HomePage, TodoDetails, LibraryHome} from "./pages";
 
 export default class App extends React.Component {
 
@@ -14,10 +14,15 @@ export default class App extends React.Component {
                     &nbsp;
                     &nbsp;
                     <Link to={"/todo"}>Take me to ToDo</Link>
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    <Link to={"/library"}>Take me to Library</Link>
                     <Switch>
                         <Route path={"/"} exact component={HomePage}/>
                         <Route path={"/todo"} exact component={TodoApp}/>
                         <Route path={"/todo/details"} exact component={TodoDetails}/>
+                        <Route path={"/library"} exact component={LibraryHome}/>
                         <Route path={"/test"} exact component={TestPage}/>
                         <Route path={"/test/home"} exact>
                             <HomePage/>
