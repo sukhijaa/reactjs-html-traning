@@ -2,16 +2,10 @@ import React from 'react';
 import "./TodoDetails.css";
 import NavButton from "./NavButton";
 import {connect} from "react-redux";
-import {updateTodoIdAction} from "../../store/todoDetails";
+import {TODO_APP_DATA} from "../../utils";
 
 const doNothing = () => null;
 
-@connect((store) => {
-    return {
-        todoItems: store.todoData,
-        activeTodoItem: (store.todoData || []).find(todoItem => todoItem.id === store.todoDetails.activeId)
-    };
-})
 class TodoDetails extends React.Component {
 
     // Lifecycle methods
@@ -50,9 +44,8 @@ class TodoDetails extends React.Component {
         const {location} = this.props;
         const {state: tileId} = location;
 
+        debugger;
         const tileDetails = this.props.todoItems.find(todoItem => todoItem.id === this.state.tileId);
-
-        this.props.dispatch(updateTodoIdAction(tileId));
 
         if (!tileDetails) {
             this.props.history.push("/todo");
@@ -121,15 +114,15 @@ class TodoDetails extends React.Component {
     };
 
     render() {
-        if (!this.props.activeTodoItem) {
-            return <h1 onClick={this.handleReRenderClick}>Click Me To ReRender</h1>;
+        if (!this.state.todoTileDetails) {
+            return <h1>Loading</h1>
         }
 
         const isLastEntry = this.props.todoItems.findIndex(todoItem => todoItem.id === this.state.tileId) === (this.props.todoItems.length - 1);
         const isFirstEntry = this.props.todoItems.findIndex(todoItem => todoItem.id === this.state.tileId) === 0;
 
 
-        const {details: stateDetails, description, id} = this.props.activeTodoItem;
+        const {details: stateDetails, description, id} = this.state.todoTileDetails;
         return (
             <div className={"todo-details-wrapper"}>
                 <div className={"todo-details-navigators"}>
@@ -153,5 +146,9 @@ class TodoDetails extends React.Component {
         );
     }
 }
+
+TodoDetails.defaultProps = {
+    todoItems: TODO_APP_DATA,
+};
 
 export default TodoDetails;

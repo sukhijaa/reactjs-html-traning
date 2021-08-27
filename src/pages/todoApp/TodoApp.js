@@ -1,19 +1,12 @@
 import React, {Component} from "react";
 import TodoTile from "./TodoTile";
 import "./TodoApp.css";
-import {connect} from "react-redux";
+import {TODO_APP_DATA} from "../../utils";
 
-@connect((store) => {
-    console.log(store);
-    return {
-        mConnectedProp: "My Connected OProp",
-        todoItems: store.todoData
-    };
-})
 class TodoApp extends Component {
 
     state = {
-        todoItems: []
+        todoItems: TODO_APP_DATA
     };
 
     constructor(props) {
@@ -21,7 +14,7 @@ class TodoApp extends Component {
     }
 
     componentDidMount() {
-        this.setState({todoItems: this.props.todoItems})
+        this.setState({todoItems: TODO_APP_DATA})
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -96,7 +89,8 @@ class TodoApp extends Component {
                                              onDelete={this.handleTileDelete}/>;
                         })
                     }
-                    <TodoTile initials={"+"} description={"Add New ToDo"} type={'New'} onCreateButtonClick={this.createTodoHandler}
+                    <TodoTile initials={"+"} description={"Add New ToDo"} type={'New'}
+                              onCreateButtonClick={this.createTodoHandler}
                               id={-2}/>
                 </div>
             </div>

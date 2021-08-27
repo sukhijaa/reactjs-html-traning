@@ -1,5 +1,4 @@
 import React from 'react';
-import MyFirstComponent from "./MyFirstComponent";
 import {Router, Link, BrowserRouter} from 'react-router-dom';
 import {Route, Switch} from 'react-router';
 import {TestPage, TodoApp, HomePage, TodoDetails} from "./pages";
