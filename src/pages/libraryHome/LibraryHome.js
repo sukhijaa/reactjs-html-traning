@@ -16,6 +16,10 @@ class LibraryHome extends React.Component {
         this.setState({checkedRadio: target.name});
     };
 
+    handleAddNewBook = () => {
+        this.props.history.push("/library/new");
+    };
+
     render() {
         return (
             <div className={"library-wrapper"}>
@@ -30,6 +34,9 @@ class LibraryHome extends React.Component {
                     <input type={"radio"} name={"author"} id={"authorRadio"}
                            checked={this.state.checkedRadio === "author"} onChange={this.handleRadioButtonChange}/>
                     <label htmlFor={"authorRadio"}>Author</label>
+                </div>
+                <div className={"library-controls-wrapper"} onClick={this.handleAddNewBook}>
+                    Add A New Book
                 </div>
                 <div className={"library-data-wrapper"}>
                     <LibraryGroup groupingType={this.state.checkedRadio}/>
