@@ -1,7 +1,24 @@
 import React from 'react';
 import './LibraryHome.css';
 import LibraryGroup from "./LibraryGroup";
+import {connect} from "react-redux";
+import {testerThunk} from "./libraryThunks";
 
+const mapStateToProps = (store) => {
+    return {
+        booksData: store.booksData.books,
+        myCustomProp: "My Custom Value"
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        testerAction: () => dispatch({type: "app/TESTER"}),
+        testerThunk: (data) => dispatch(testerThunk(data))
+    }
+};
+
+@connect(mapStateToProps, mapDispatchToProps)
 class LibraryHome extends React.Component {
     state = {
         checkedRadio: "books",
@@ -9,6 +26,14 @@ class LibraryHome extends React.Component {
 
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount() {
+        console.log(this.props);
+        // this.props.testerAction();
+        this.props.testerThunk("My Custom Data");
+        // this.props.dispatch({type: "app/TESTER"});
+        console.log("My Action Dispatched");
     }
 
     handleRadioButtonChange = (e) => {
