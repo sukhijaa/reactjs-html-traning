@@ -2,8 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './LibraryHome.css';
 import LineItem from "./LineItem";
-import {BOOK_MASTER} from "../../utils";
+import {getAllBooksData, getBooksGroupingTypeSelector} from "../../store/reducers/bookReducer/bookSelectors";
+import {connect} from "react-redux";
+import {getAllBooksDataThunk, testerThunk} from "./libraryThunks";
+import {setBooksGroupingTypeAction} from "../../store/reducers/bookReducer/bookActions";
 
+const mapStateToProps = (store) => ({
+    booksData: getAllBooksData(store),
+    groupingType: getBooksGroupingTypeSelector(store)
+});
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchBooksData: () => dispatch(getAllBooksDataThunk())
+    }
+};
+
+@connect(mapStateToProps, mapDispatchToProps)
 class LibraryGroup extends React.PureComponent {
 
     state = {
@@ -11,11 +26,17 @@ class LibraryGroup extends React.PureComponent {
     };
 
     componentDidMount() {
+        this.props.fetchBooksData();
+
         this.handleGrouping();
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.groupingType !== this.props.groupingType) {
+            this.handleGrouping();
+        }
+
+        if (this.props.booksData !== prevProps.booksData) {
             this.handleGrouping();
         }
     }
@@ -33,7 +54,8 @@ class LibraryGroup extends React.PureComponent {
         // ]
 
         const groupedBooks = {};
-        BOOK_MASTER.forEach(book => {
+        const {booksData} = this.props;
+        booksData.forEach(book => {
             const {bookSeriesId, authorName, bookSeriesName} = book;
             if (groupedBooks[bookSeriesId]) {
                 const groupObj = groupedBooks[bookSeriesId];
@@ -63,7 +85,8 @@ class LibraryGroup extends React.PureComponent {
         // ]
 
         const groupedAuthors = {};
-        BOOK_MASTER.forEach(book => {
+        const {booksData} = this.props;
+        booksData.forEach(book => {
             const {authorName, authorId} = book;
 
             if (groupedAuthors[authorId]) {
@@ -90,15 +113,20 @@ class LibraryGroup extends React.PureComponent {
     };
 
     render() {
+        const {groupedData} = this.state;
+        if (!groupedData || groupedData.length === 0) {
+            return <div>Loading...</div>;
+        }
         return (
             <React.Fragment>
                 {
-                    this.state.groupedData.map((groupItem, index) => {
+                    groupedData.map((groupItem, index) => {
                         const {title, caption, items} = groupItem;
                         return (
                             <LineItem key={index} title={title} caption={caption}>
                                 {
-                                    (items || []).map(bookObj => <LineItem key={bookObj.bookId} title={bookObj.title} caption={bookObj.caption}/>)
+                                    (items || []).map(bookObj => <LineItem key={bookObj.bookId} title={bookObj.title}
+                                                                           caption={bookObj.caption}/>)
                                 }
                             </LineItem>
                         )

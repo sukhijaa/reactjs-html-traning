@@ -1,5 +1,5 @@
 import {combineReducers} from "redux";
-import bookReducer from "./reducers/bookReducer";
+import bookReducer from "./reducers/bookReducer/bookReducer";
 import todoReducer from "./reducers/todoReducer";
 
 const initialState = {

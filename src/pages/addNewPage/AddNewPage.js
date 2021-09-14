@@ -1,7 +1,20 @@
 import React from 'react';
 import './AddNewPage.css';
 import {addNewBook} from "../../utils";
+import {addNewBookThunk} from "./addNewThunks";
+import {connect} from "react-redux";
+import {getAddNewBookErrorSelector} from "../../store/reducers/bookReducer/bookSelectors";
+import {setAddNewBookErrorAction} from "../../store/reducers/bookReducer/bookActions";
 
+const mapStateToProps = (store) => ({
+    error: getAddNewBookErrorSelector(store)
+});
+const mapDispatchToProps = (dispatch) => ({
+    addNewBook: (bookData, history) => dispatch(addNewBookThunk(bookData, history)),
+    setError: (newError) => dispatch(setAddNewBookErrorAction(newError))
+});
+
+@connect(mapStateToProps, mapDispatchToProps)
 class AddNewPage extends React.Component {
     state = {
         formState: {
@@ -10,7 +23,6 @@ class AddNewPage extends React.Component {
             seriesName: "My First Series",
             author: "I Me Myself"
         },
-        error: ""
     };
 
     handleDataChange = (e) => {
@@ -18,25 +30,22 @@ class AddNewPage extends React.Component {
         const {name, value} = target;
         const newFormState = {...this.state.formState, [name]: value};
         this.setState({formState: newFormState});
-        this.setState({error: ""});
+        this.props.setError("");
     };
 
     handleAddNewBook = () => {
         const {formState} = this.state;
         if (!formState.bookName || !formState.bookCaption || !formState.seriesName || !formState.author) {
-            this.setState({error: "All fields are mandatory"});
+            // this.setState({error: "All fields are mandatory"});
+            this.props.setError("All fields are mandatory")
             return;
         }
-        const error = addNewBook(this.state.formState);
-        if (error) {
-            this.setState({error});
-            return;
-        }
-        this.props.history.push("/library");
+        this.props.addNewBook(formState, this.props.history);
     };
 
     render() {
         const {formState} = this.state;
+        const {error} = this.props;
 
         return (
             <div className={"library-add-new-wrapper"}>
@@ -61,7 +70,7 @@ class AddNewPage extends React.Component {
                         <input type={"text"} id={"author"} name={"author"} onChange={this.handleDataChange} value={formState.author}/>
                     </div>
                     <div className={"add-new-body-error"}>
-                        {this.state.error}
+                        {error}
                     </div>
                 </div>
                 <div className={"add-new-footer-wrapper"}>

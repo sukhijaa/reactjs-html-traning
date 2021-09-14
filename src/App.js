@@ -6,6 +6,7 @@ import {TestPage, TodoApp, HomePage, TodoDetails, LibraryHome, AddNewPage} from 
 export default class App extends React.Component {
 
     render() {
+        console.log("App is refreshing");
         return (
             <React.Fragment>
                 <BrowserRouter>

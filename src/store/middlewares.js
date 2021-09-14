@@ -1,12 +1,11 @@
 import thunk from "redux-thunk";
 
 const loggerMiddleware = store => next => action => {
-    console.log("this is my middleware", action);
+    console.log("Action Fired", action);
     next(action);
 };
 
 const deciderMiddleware = store => next => action => {
-    console.log("this is decider middle");
     if (typeof action.type !== "string") {
         return;
     }
