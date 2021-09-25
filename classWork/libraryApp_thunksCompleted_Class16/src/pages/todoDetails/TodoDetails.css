@@ -1,0 +1,31 @@
+.todo-details-wrapper .todo-details-navigators {
+  display: flex;
+}
+
+.todo-details-wrapper .todo-details-navigators h1:last-child {
+  flex-grow: 100;
+  text-align: right;
+}
+
+.todo-details-wrapper .todo-details-navigators .nav-button {
+  font-size: 16px;
+  color: blue;
+  cursor: pointer;
+}
+
+.todo-details-wrapper .todo-details-navigators .disabled {
+  color: gray;
+  cursor: not-allowed;
+}
+
+.todo-details-wrapper .todo-tile-description {
+  font-size: 35px;
+  text-decoration: underline;
+}
+
+/*SCSS Behavior*/
+/*.todo-details-wrapper {*/
+/*  .todo-details-navigators {*/
+/*    display: flex;*/
+/*  }*/
+/*}*/
