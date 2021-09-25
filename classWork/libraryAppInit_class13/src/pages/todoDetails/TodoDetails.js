@@ -44,7 +44,7 @@ class TodoDetails extends React.Component {
         const {location} = this.props;
         const {state: tileId} = location;
 
-        debugger;
+
         const tileDetails = this.props.todoItems.find(todoItem => todoItem.id === this.state.tileId);
 
         if (!tileDetails) {

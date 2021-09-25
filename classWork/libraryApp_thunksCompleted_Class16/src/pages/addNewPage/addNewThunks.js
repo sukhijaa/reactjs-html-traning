@@ -21,7 +21,6 @@ export const addNewBookThunk = (bookData, history) => async (dispatch, getState)
         bookSeriesName: bookData.seriesName
     };
     let maxBookId = 0;
-    debugger;
     const matchedBookName = allBooksData.find(book => (bookObj.title || '').toLowerCase() === (book.title || '').toLowerCase());
     if (matchedBookName) {
         dispatch(setAddNewBookErrorAction("Book Name Already Exists"));

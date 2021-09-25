@@ -80,7 +80,7 @@ function onChangeHandler(target) {
 }
 
 function handleMethodSubmit(e) {
-    debugger;
+
     console.log(e);
 }
 
