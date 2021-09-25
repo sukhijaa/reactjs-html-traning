@@ -1,10 +1,10 @@
 import React from 'react';
 import './AddNewPage.css';
-import {addNewBook} from "../../utils";
 import {addNewBookThunk} from "./addNewThunks";
 import {connect} from "react-redux";
 import {getAddNewBookErrorSelector} from "../../store/reducers/bookReducer/bookSelectors";
 import {setAddNewBookErrorAction} from "../../store/reducers/bookReducer/bookActions";
+import RedirectToLogin from "../../hocs/RedirectToLogin";
 
 const mapStateToProps = (store) => ({
     error: getAddNewBookErrorSelector(store)
@@ -14,7 +14,6 @@ const mapDispatchToProps = (dispatch) => ({
     setError: (newError) => dispatch(setAddNewBookErrorAction(newError))
 });
 
-@connect(mapStateToProps, mapDispatchToProps)
 class AddNewPage extends React.Component {
     state = {
         formState: {
@@ -81,4 +80,4 @@ class AddNewPage extends React.Component {
     }
 }
 
-export default AddNewPage;
+export default connect(mapStateToProps, mapDispatchToProps)(RedirectToLogin(AddNewPage));

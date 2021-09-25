@@ -4,6 +4,7 @@ export {default as TodoApp} from './todoApp';
 export {default as TodoDetails} from './todoDetails';
 export {default as LibraryHome} from './libraryHome';
 export {default as AddNewPage} from './addNewPage';
+export {default as LoginPage} from './loginPage';
 
 // OR
 // import HP from "./homePage";

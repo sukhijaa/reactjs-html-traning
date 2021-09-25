@@ -1,5 +1,4 @@
 import {setAllBooksDataAction} from "../../store/reducers/bookReducer/bookActions";
-import {BOOK_MASTER} from "../../utils";
 
 export const testerThunk = (data) => (dispatch, getState) => {
     console.log("Inside Thunk", data);
@@ -15,13 +14,14 @@ export const testerThunk = (data) => (dispatch, getState) => {
 export const getAllBooksDataThunk = () => async (dispatch, getState) => {
     // Fetch Books Data from Backend
     console.log("Starting to Fetch All Books Data");
+    var allBooks = [];
     try {
-        const data = await fetch("https://www.google.com/search?q=react");
-        console.log("Fetched All Books Data", data);
+        const response = await fetch("http://localhost:3000/library/all");
+        allBooks = await response.json();
+        console.log("Fetched All Books Data", allBooks);
     } catch (e) {
         console.error(e);
     }
-    const allBooks = BOOK_MASTER;
     dispatch(setAllBooksDataAction(allBooks));
 
     // return new Promise(resolve => {

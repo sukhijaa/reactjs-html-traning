@@ -3,14 +3,16 @@ import './LibraryHome.css';
 import LibraryGroup from "./LibraryGroup";
 import {connect} from "react-redux";
 import {testerThunk} from "./libraryThunks";
-import {getBooksGroupingTypeSelector} from "../../store/reducers/bookReducer/bookSelectors";
+import {getBooksGroupingTypeSelector, getUserLoggedInSelector} from "../../store/reducers/bookReducer/bookSelectors";
 import {setBooksGroupingTypeAction} from "../../store/reducers/bookReducer/bookActions";
+import RedirectToLogin from "../../hocs/RedirectToLogin";
 
 const mapStateToProps = (store) => {
     return {
         booksData: store.booksData.allBooks,
         myCustomProp: "My Custom Value",
-        groupingType: getBooksGroupingTypeSelector(store)
+        groupingType: getBooksGroupingTypeSelector(store),
+        isLoggedIn: getUserLoggedInSelector(store)
     };
 };
 
@@ -22,13 +24,16 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-@connect(mapStateToProps, mapDispatchToProps)
 class LibraryHome extends React.Component {
     constructor(props) {
         super(props);
     }
 
     componentDidMount() {
+        if (!this.props.isLoggedIn) {
+            console.log("user not logged in");
+            // this.props.history.push("/library/login");
+        }
         this.props.testerAction();
         // this.props.testerThunk("My Custom Data");
         // this.props.dispatch({type: "app/TESTER"});
@@ -63,11 +68,11 @@ class LibraryHome extends React.Component {
                     Add A New Book
                 </div>
                 <div className={"library-data-wrapper"}>
-                    <LibraryGroup/>
+                    <LibraryGroup history={this.props.history}/>
                 </div>
             </div>
         )
     }
 }
 
-export default LibraryHome;
+export default connect(mapStateToProps, mapDispatchToProps)(RedirectToLogin(LibraryHome));

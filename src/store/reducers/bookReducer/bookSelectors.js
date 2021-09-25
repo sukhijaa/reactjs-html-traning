@@ -10,3 +10,6 @@ export const getBookById = (store, id) => {
     const allBooks = getAllBooksData(store);
     return allBooks.find(book => book.id === id)
 };
+
+export const getUserLoggedInSelector = (store) => store.booksData.isLoggedIn || initialState.isLoggedIn;
+export const getUserLoggedInTokenSelector = (store) => store.booksData.loginToken || initialState.loginToken;

@@ -1,13 +1,15 @@
 import {
     ADD_NEW_BOOK_ACTIONTYPE, SET_ADD_BOOK_ERROR_ACTIONTYPE,
     SET_ALL_BOOKS_DATA_ACTIONTYPE,
-    SET_BOOKS_GROUPING_TYPE_ACTIONTYPE
+    SET_BOOKS_GROUPING_TYPE_ACTIONTYPE, SET_USER_LOGGED_IN_ACTIONTYPE, SET_USER_LOGGED_OUT_ACTIONTYPE
 } from "./bookActionType";
 
 export const initialState = {
     allBooks: [],
     groupingType: "books",
-    addBookError: ""
+    addBookError: "",
+    isLoggedIn: false,
+    loginToken: ""
 };
 
 const bookReducer = (state = initialState, action) => {
@@ -32,6 +34,15 @@ const bookReducer = (state = initialState, action) => {
             const newState = {...state};
             newState.addBookError = payload;
             return newState;
+        }
+        case SET_USER_LOGGED_IN_ACTIONTYPE: {
+            const newState = {...state};
+            newState.isLoggedIn = true;
+            newState.loginToken = payload;
+            return newState;
+        }
+        case SET_USER_LOGGED_OUT_ACTIONTYPE: {
+            return {...initialState};
         }
         default: {
             return state;
