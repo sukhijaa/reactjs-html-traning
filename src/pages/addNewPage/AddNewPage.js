@@ -80,4 +80,4 @@ class AddNewPage extends React.Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RedirectToLogin(AddNewPage));
+export default connect(mapStateToProps, mapDispatchToProps)(RedirectToLogin(AddNewPage, ["ADMIN"]));

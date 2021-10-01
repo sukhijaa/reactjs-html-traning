@@ -1,8 +1,9 @@
 import React from 'react';
-import {getUserLoggedInSelector} from "../store/reducers/bookReducer/bookSelectors";
+import {getLoginUserRoleSelector, getUserLoggedInSelector} from "../store/reducers/bookReducer/bookSelectors";
 import store from "../store/configureStore";
+import {validateToken} from "../pages/loginPage/loginThunks";
 
-const RedirectToLogin = (WrappedComponent) => {
+const RedirectToLogin = (WrappedComponent, AllowedRoles) => {
 
     return class extends React.Component {
 
@@ -18,6 +19,21 @@ const RedirectToLogin = (WrappedComponent) => {
 
         redirectToLogin = () => {
             const isLoggedIn = getUserLoggedInSelector(store.getState());
+            const userRole = getLoginUserRoleSelector(store.getState());
+            const hasToken = localStorage.getItem("authToken");
+
+            if (AllowedRoles && !(AllowedRoles).includes(userRole)) {
+                this.props.history.goBack();
+            }
+
+
+            if (isLoggedIn) return;
+
+            if (hasToken) {
+                store.dispatch(validateToken(hasToken, this.props.history));
+                return;
+            }
+
             if (!isLoggedIn) {
                 this.props.history.push("/library/login");
             }

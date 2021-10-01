@@ -1,11 +1,12 @@
 import React from 'react';
 import {ErrorMessage, Field, Form, Formik} from 'formik';
-import {getUserLoggedInSelector} from "../../store/reducers/bookReducer/bookSelectors";
+import {getLoginErrorMessageSelector, getUserLoggedInSelector} from "../../store/reducers/bookReducer/bookSelectors";
 import {connect} from "react-redux";
 import {handleUserLogin} from "./loginThunks";
 
 const mapStateToProps = (store) => ({
-    isLoggedIn: getUserLoggedInSelector(store)
+    isLoggedIn: getUserLoggedInSelector(store),
+    loginError: getLoginErrorMessageSelector(store)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -39,7 +40,6 @@ class Login extends React.Component {
                         return errors;
                     }}
                     onSubmit={(values, {setSubmitting}) => {
-                        debugger;
                         this.props.handleLogin(values, this.props.history);
                         setTimeout(() => {
                             setSubmitting(false);
@@ -52,6 +52,7 @@ class Login extends React.Component {
                             <ErrorMessage name="email" component="div"/>
                             <Field type="password" name="password"/>
                             <ErrorMessage name="password" component="div"/>
+                            <div className={"error-message"}>{this.props.loginError}</div>
                             <button type="submit" disabled={isSubmitting}>
                                 Submit
                             </button>

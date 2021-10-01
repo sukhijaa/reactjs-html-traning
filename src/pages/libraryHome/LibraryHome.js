@@ -6,6 +6,8 @@ import {testerThunk} from "./libraryThunks";
 import {getBooksGroupingTypeSelector, getUserLoggedInSelector} from "../../store/reducers/bookReducer/bookSelectors";
 import {setBooksGroupingTypeAction} from "../../store/reducers/bookReducer/bookActions";
 import RedirectToLogin from "../../hocs/RedirectToLogin";
+import AddBookButton from "./AddBookButton";
+import SessionTimer from "./SessionTimer";
 
 const mapStateToProps = (store) => {
     return {
@@ -64,9 +66,8 @@ class LibraryHome extends React.Component {
                            checked={groupingType === "author"} onChange={this.handleRadioButtonChange}/>
                     <label htmlFor={"authorRadio"}>Author</label>
                 </div>
-                <div className={"library-controls-wrapper"} onClick={this.handleAddNewBook}>
-                    Add A New Book
-                </div>
+                <AddBookButton handleAddNewBook={this.handleAddNewBook}/>
+                <SessionTimer/>
                 <div className={"library-data-wrapper"}>
                     <LibraryGroup history={this.props.history}/>
                 </div>
