@@ -1,0 +1,24 @@
+.library-add-new-wrapper {
+
+}
+
+.library-add-new-wrapper .add-new-header-wrapper {
+
+}
+
+.library-add-new-wrapper .add-new-body-wrapper {
+    margin-top: 20px;
+    padding: 5px 20px;
+}
+
+.library-add-new-wrapper .add-new-body-wrapper .add-new-body-element {
+    margin: 20px 0;
+}
+
+.library-add-new-wrapper .add-new-body-wrapper .add-new-body-error {
+    color: red;
+}
+
+.library-add-new-wrapper .add-new-body-wrapper .add-new-body-element label {
+    margin-right: 20px;
+}
