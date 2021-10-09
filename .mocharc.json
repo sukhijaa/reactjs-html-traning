@@ -1,0 +1,3 @@
+{
+  "require": ["@babel/register", "ignore-styles", "./src/__tests__/dom.js", "./src/__tests__/helper.js", "./src/__tests__/configureTests.js"]
+}

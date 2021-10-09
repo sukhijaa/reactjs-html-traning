@@ -3,5 +3,6 @@ package-lock.json
 
 out
 dist
+coverage
 
 .idea

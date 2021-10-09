@@ -4,7 +4,13 @@ import './LibraryHome.css';
 
 class LineItem extends React.PureComponent {
 
+    // This lifecycle method is called whenever there is any uncaught error in React Component
+    componentDidCatch(error, errorInfo) {
+        console.error(error);
+    }
+
     render() {
+        // const captionLength = this.props.newProp.length;
         return (
             <div className={"line-item"}>
                 <div className={"line-item-title"}>
@@ -21,6 +27,7 @@ class LineItem extends React.PureComponent {
 
 LineItem.propTypes = {
     title: PropTypes.string.isRequired,
+    // newProp: PropTypes.string.isRequired,
     caption: PropTypes.string
 };
 
