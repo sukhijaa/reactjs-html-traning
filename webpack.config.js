@@ -3,6 +3,7 @@
 const path = require('path');
 const HtmlPlugin = require('html-webpack-plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
     // Define the entry point from where webpack should start scanning all the modules. If there are multiple entry points in your applications, you can mention them here and
@@ -35,6 +36,11 @@ module.exports = {
             allowAsyncCycles: false,
             // set the current working directory for displaying module paths
             cwd: process.cwd(),
+        }),
+        new CopyWebpackPlugin({
+            patterns: [
+                { from: 'public/images', to: 'assets' }
+            ]
         })
     ],
     // Dev server configuration. This helps in flawless development process wherein webpack itself builds and refreshes the browser
@@ -61,7 +67,35 @@ module.exports = {
             {
                 test: /\.css$/,
                 exclude: /node_modules/,
-                use: ["style-loader", "css-loader"]
+                loader: "style-loader",
+            },
+            {
+                test: /\.css$/,
+                exclude: /node_modules/,
+                loader: "css-loader",
+                options: {
+                    url: true
+                }
+            },
+            {
+                test: /\.(png|jp(e*)g|svg)$/,
+                exclude: /\.js$/,
+                include: /\.css$/,
+                use: [{
+                    loader: 'url-loader',
+                    options: {
+                        name: 'assets/[hash]-[name].[ext]'
+                    }
+                }]
+            },
+            // for this rule, we need images
+            {
+                test: /\.(png|jpe?g|gif)$/i,
+                use: [
+                    {
+                        loader: 'file-loader',
+                    },
+                ],
             }
         ]
     }

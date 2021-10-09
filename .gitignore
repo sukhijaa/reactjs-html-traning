@@ -4,5 +4,6 @@ package-lock.json
 out
 dist
 coverage
+.nyc-coverage
 
 .idea

@@ -8,6 +8,7 @@ import {setBooksGroupingTypeAction} from "../../store/reducers/bookReducer/bookA
 import RedirectToLogin from "../../hocs/RedirectToLogin";
 import AddBookButton from "./AddBookButton";
 import SessionTimer from "./SessionTimer";
+import Image1 from "../../../public/images/img1.jpg";
 
 const mapStateToProps = (store) => {
     return {
@@ -68,6 +69,7 @@ class LibraryHome extends React.Component {
                 </div>
                 <AddBookButton handleAddNewBook={this.handleAddNewBook}/>
                 <SessionTimer/>
+                <img src={Image1} className={"my-test-image"}></img>
                 <div className={"library-data-wrapper"}>
                     <LibraryGroup history={this.props.history}/>
                 </div>

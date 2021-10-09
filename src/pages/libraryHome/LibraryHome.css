@@ -1,5 +1,7 @@
 .library-wrapper {
-
+    /*background: url("https://assets.airtel.in/static-assets/new-home/img/airtel-red.svg");*/
+    background: /* webpackIgnore: true */ url("/assets/img2.jpg");
+    background-size: auto;
 }
 
 .library-wrapper .library-header-wrapper {
@@ -45,4 +47,9 @@
 .library-wrapper .library-data-wrapper .line-item .line-item-caption {
     font-size: 12px;
     color: darkgray;
+}
+
+.library-wrapper .my-test-image {
+    height: 50px;
+    width: 50px;
 }
