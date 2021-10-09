@@ -77,17 +77,6 @@ module.exports = {
                     url: true
                 }
             },
-            {
-                test: /\.(png|jp(e*)g|svg)$/,
-                exclude: /\.js$/,
-                include: /\.css$/,
-                use: [{
-                    loader: 'url-loader',
-                    options: {
-                        name: 'assets/[hash]-[name].[ext]'
-                    }
-                }]
-            },
             // for this rule, we need images
             {
                 test: /\.(png|jpe?g|gif)$/i,
