@@ -1,0 +1,48 @@
+.library-wrapper {
+
+}
+
+.library-wrapper .library-header-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.library-wrapper .library-header-wrapper h1 {
+    text-decoration: underline;
+}
+
+.library-wrapper .library-controls-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+}
+.library-wrapper .library-controls-wrapper .control-label {
+    margin-right: 20px;
+}
+.library-wrapper .library-controls-wrapper label {
+    margin-right:20px;
+}
+
+.library-wrapper .library-data-wrapper {
+    width: calc(100% - 40px);
+    padding: 20px;
+}
+
+.library-wrapper .library-data-wrapper .line-item {
+    width: calc(100% - 40px);
+    margin: 20px 0;
+    padding: 5px 20px;
+    background: wheat;
+}
+
+.library-wrapper .library-data-wrapper .line-item .line-item-title {
+    font-size: 16px;
+    font-weight: bolder;
+}
+
+.library-wrapper .library-data-wrapper .line-item .line-item-caption {
+    font-size: 12px;
+    color: darkgray;
+}
